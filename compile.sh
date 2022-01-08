@@ -1,1 +1,1 @@
-GOARCH=wasm GOOS=js go build -o lib.wasm main/index.go
+tinygo build -o lib.wasm -target wasm ./main/index.go

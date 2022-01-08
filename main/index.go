@@ -1,25 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"syscall/js"
-)
-
-func add(this js.Value, args []js.Value) interface{} {
-	a, b := args[0].Int(), args[1].Int()
-	return a + b
-}
-
-func substract(this js.Value, args []js.Value) interface{} {
-	a, b := args[0].Int(), args[1].Int()
-	return a - b
-}
-
 func main() {
-	fmt.Println("hello wasm world")
+	println("hello world! tinygo wasm")
+}
 
-	js.Global().Set("add", js.FuncOf(add))
-	js.Global().Set("substract", js.FuncOf(substract))
+/**
+*	magic!! Tinygo use //export comment header
+* to indicate which function will be exported
+ */
 
-	select {}
+//export add
+func add(x, y int) int {
+	return x + y
+}
+
+//export substract
+func substract(x, y int) int {
+	return x - y
 }
